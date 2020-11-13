@@ -30,7 +30,7 @@ void *producer(void *vararg)
     sem_wait(&empty);
     pthread_mutex_lock(&lock);
 
-    printf("PRODUCER: Seed:%d, value:%d, top:%d\n", seed, val, top);
+    printf("PRODUCER: PRODUCING ITEM, Seed:%d, value:%d, top:%d\n", seed, val, top);
     buffer[top++] = val; 
   
     pthread_mutex_unlock(&lock);
@@ -48,7 +48,7 @@ void *consumer(void *vararg)
     pthread_mutex_lock(&lock);
 
     top--;
-    printf("CONSUMER: consumed %d, top:%d\n", buffer[top], top);
+    printf("CONSUMER: CONSUMING ITEM, %d, top:%d\n", buffer[top], top);
     buffer[top] = -1;
 
     pthread_mutex_unlock(&lock);
